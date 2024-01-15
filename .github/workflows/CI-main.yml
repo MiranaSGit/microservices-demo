@@ -4,7 +4,7 @@ env:
   AWS_REGION: us-east-1
   ECR_REPOSITORY: 178628758487.dkr.ecr.us-east-1.amazonaws.com/my-test
 jobs:
-  Build and Publish:
+  BuildAndPublish:
     runs-on: ubuntu-latest
     steps:
       - name: Code checkout
