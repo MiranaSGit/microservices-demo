@@ -13,7 +13,7 @@ jobs:
       - name: Maven test
         run: |
           cd src/adservice
-          mvn test
+          mvn checkstyle:checkstyle
 
       # - name: Build and upload image to ECR
       #   uses: appleboy/docker-ecr-action@master
