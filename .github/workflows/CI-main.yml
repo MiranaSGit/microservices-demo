@@ -12,6 +12,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Build and upload image to ECR
+        working-directory: my-workspace
         run: |
           cd /src/adservice
           docker build -t adservice .
