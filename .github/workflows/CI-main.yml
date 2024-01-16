@@ -10,28 +10,41 @@ jobs:
       - name: Code checkout
         uses: actions/checkout@v4
 
-      - name: AdService Build and upload image to ECR
-        uses: appleboy/docker-ecr-action@master
-        with:
-          access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          registry: ${{ secrets.REGISTRY }}
-          repo: adservice
-          region: ${{ env.REGION }}
-          tags: latest, ${{ github.run_number}}
-          daemon_off: false
-          dockerfile: ${{ github.workspace }}/src/adservice/Dockerfile
-          context: ${{ github.workspace }}/src/adservice
+      # - name: AdService Build and upload image to ECR
+      #   uses: appleboy/docker-ecr-action@master
+      #   with:
+      #     access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      #     secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      #     registry: ${{ secrets.REGISTRY }}
+      #     repo: adservice
+      #     region: ${{ env.REGION }}
+      #     tags: latest, ${{ github.run_number}}
+      #     daemon_off: false
+      #     dockerfile: ${{ github.workspace }}/src/adservice/Dockerfile
+      #     context: ${{ github.workspace }}/src/adservice
 
-      - name: CartService Build and upload image to ECR
+      # - name: CartService Build and upload image to ECR
+      #   uses: appleboy/docker-ecr-action@master
+      #   with:
+      #     access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      #     secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      #     registry: ${{ secrets.REGISTRY }}
+      #     repo: cartservice
+      #     region: ${{ env.REGION }}
+      #     tags: latest, ${{ github.run_number}}
+      #     daemon_off: false
+      #     dockerfile: ${{ github.workspace }}/src/cartservice/src/Dockerfile
+      #     context: ${{ github.workspace }}/src/cartservice/src
+
+      - name: CheckoutService Build and upload image to ECR
         uses: appleboy/docker-ecr-action@master
         with:
           access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
           secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           registry: ${{ secrets.REGISTRY }}
-          repo: cartservice
+          repo: checkoutservice
           region: ${{ env.REGION }}
           tags: latest, ${{ github.run_number}}
           daemon_off: false
-          dockerfile: ${{ github.workspace }}/src/cartservice/src/Dockerfile
-          context: ${{ github.workspace }}/src/cartservice/src
+          dockerfile: ${{ github.workspace }}/src/checkoutservice/Dockerfile
+          context: ${{ github.workspace }}/src/checkoutservice
