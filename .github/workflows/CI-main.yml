@@ -2,7 +2,6 @@ name: CI Workflow
 on: workflow_dispatch
 env:
   AWS_REGION: us-east-1
-  ECR_REPOSITORY: my-test
   REGION: us-east-1
 jobs:
   BuildAndPublish:
@@ -12,19 +11,14 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Build and upload image to ECR
-        run: |
-          cd ${{ github.workspace }}/src/adservice
-          docker build -t adservice .
-
-      # - name: Build and upload image to ECR
-      #   uses: appleboy/docker-ecr-action@master
-      #   with:
-      #     access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      #     secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      #     registry: ${{ secrets.REGISTRY }}
-      #     repo: ${{ env.ECR_REPOSITORY }}
-      #     region: ${{ env.REGION }}
-      #     tags: latest, ${{ github.run_number}}
-      #     daemon_off: false
-      #     dockerfile: ./Dockerfile
-      #     context: ./
+        uses: appleboy/docker-ecr-action@master
+        with:
+          access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          registry: ${{ secrets.REGISTRY }}
+          repo: adservice
+          region: ${{ env.REGION }}
+          tags: latest, ${{ github.run_number}}
+          daemon_off: false
+          dockerfile: ${{ github.workspace }}/src/adservice/Dockerfile
+          context: ./
