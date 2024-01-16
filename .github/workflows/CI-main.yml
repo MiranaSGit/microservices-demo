@@ -2,7 +2,8 @@ name: CI Workflow
 on: workflow_dispatch
 env:
   AWS_REGION: us-east-1
-  ECR_REPOSITORY: 178628758487.dkr.ecr.us-east-1.amazonaws.com/my-test
+  ECR_REPOSITORY: my-test
+  REGION: us-east-1
 jobs:
   BuildAndPublish:
     runs-on: ubuntu-latest
@@ -10,20 +11,15 @@ jobs:
       - name: Code checkout
         uses: actions/checkout@v4
 
-      - name: Maven test
-        run: |
-          cd src/adservice
-          mvn checkstyle:checkstyle
-
-      # - name: Build and upload image to ECR
-      #   uses: appleboy/docker-ecr-action@master
-      #   with:
-      #     access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      #     secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      #     registry: ${{ secrets.REGISTRY }}
-      #     repo: ${{ env.ECR_REPOSITORY }}
-      #     region: ${{ env.REGION }}
-      #     tags: latest, ${{ github.run_number}}
-      #     daemon_off: false
-      #     dockerfile: ./Dockerfile
-      #     context: ./
+      - name: Build and upload image to ECR
+        uses: appleboy/docker-ecr-action@master
+        with:
+          access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          registry: ${{ secrets.REGISTRY }}
+          repo: ${{ env.ECR_REPOSITORY }}
+          region: ${{ env.REGION }}
+          tags: latest, ${{ github.run_number}}
+          daemon_off: false
+          dockerfile: ./Dockerfile
+          context: ./
