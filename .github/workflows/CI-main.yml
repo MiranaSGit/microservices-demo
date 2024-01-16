@@ -36,15 +36,28 @@ jobs:
       #     dockerfile: ${{ github.workspace }}/src/cartservice/src/Dockerfile
       #     context: ${{ github.workspace }}/src/cartservice/src
 
-      - name: CheckoutService Build and upload image to ECR
+      # - name: CheckoutService Build and upload image to ECR
+      #   uses: appleboy/docker-ecr-action@master
+      #   with:
+      #     access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      #     secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      #     registry: ${{ secrets.REGISTRY }}
+      #     repo: checkoutservice
+      #     region: ${{ env.REGION }}
+      #     tags: latest, ${{ github.run_number}}
+      #     daemon_off: false
+      #     dockerfile: ${{ github.workspace }}/src/checkoutservice/Dockerfile
+      #     context: ${{ github.workspace }}/src/checkoutservice
+
+      - name: CurrencyService Build and upload image to ECR
         uses: appleboy/docker-ecr-action@master
         with:
           access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
           secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           registry: ${{ secrets.REGISTRY }}
-          repo: checkoutservice
+          repo: currencyservice
           region: ${{ env.REGION }}
           tags: latest, ${{ github.run_number}}
           daemon_off: false
-          dockerfile: ${{ github.workspace }}/src/checkoutservice/Dockerfile
-          context: ${{ github.workspace }}/src/checkoutservice
+          dockerfile: ${{ github.workspace }}/src/currencyservice/Dockerfile
+          context: ${{ github.workspace }}/src/currencyservice
