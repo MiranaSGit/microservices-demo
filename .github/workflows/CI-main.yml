@@ -62,15 +62,28 @@ jobs:
       #     dockerfile: ${{ github.workspace }}/src/currencyservice/Dockerfile
       #     context: ${{ github.workspace }}/src/currencyservice
 
-      - name: Emailservice Build and upload image to ECR
+      # - name: Emailservice Build and upload image to ECR
+      #   uses: appleboy/docker-ecr-action@master
+      #   with:
+      #     access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      #     secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      #     registry: ${{ secrets.REGISTRY }}
+      #     repo: emailservice
+      #     region: ${{ env.REGION }}
+      #     tags: latest, ${{ github.run_number}}
+      #     daemon_off: false
+      #     dockerfile: ${{ github.workspace }}/src/emailservice/Dockerfile
+      #     context: ${{ github.workspace }}/src/emailservice
+
+      - name: Frontend Build and upload image to ECR
         uses: appleboy/docker-ecr-action@master
         with:
           access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
           secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           registry: ${{ secrets.REGISTRY }}
-          repo: emailservice
+          repo: frontend
           region: ${{ env.REGION }}
           tags: latest, ${{ github.run_number}}
           daemon_off: false
-          dockerfile: ${{ github.workspace }}/src/emailservice/Dockerfile
-          context: ${{ github.workspace }}/src/emailservice
+          dockerfile: ${{ github.workspace }}/src/frontend/Dockerfile
+          context: ${{ github.workspace }}/src/frontend
