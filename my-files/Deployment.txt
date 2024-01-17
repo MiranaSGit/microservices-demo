@@ -1,0 +1,2 @@
+cd helm-chart
+helm install myapp . -f ../my-files/values.yaml
