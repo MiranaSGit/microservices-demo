@@ -28,6 +28,8 @@ spec:
         app: checkoutservice
     spec:
       serviceAccountName: default
+      imagePullSecrets:
+      - name: regcred
       securityContext:
         fsGroup: 1000
         runAsGroup: 1000
@@ -42,7 +44,7 @@ spec:
                 - ALL
             privileged: false
             readOnlyRootFilesystem: true
-          image: checkoutservice
+          image: 178628758487.dkr.ecr.us-east-1.amazonaws.com/checkoutservice
           ports:
           - containerPort: 5050
           readinessProbe:

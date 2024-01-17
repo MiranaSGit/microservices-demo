@@ -40,7 +40,7 @@ spec:
       initContainers:
       - command:
         - /bin/sh
-        - -exc
+        - -exec
         - |
           echo "Init container pinging frontend: ${FRONTEND_ADDR}..."
           STATUSCODE=$(wget --server-response http://${FRONTEND_ADDR} 2>&1 | awk '/^  HTTP/{print $2}')

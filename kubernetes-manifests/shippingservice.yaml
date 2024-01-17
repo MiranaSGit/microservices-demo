@@ -28,6 +28,8 @@ spec:
         app: shippingservice
     spec:
       serviceAccountName: default
+      imagePullSecrets:
+      - name: regcred
       securityContext:
         fsGroup: 1000
         runAsGroup: 1000
@@ -42,7 +44,7 @@ spec:
               - ALL
           privileged: false
           readOnlyRootFilesystem: true
-        image: shippingservice
+        image: 178628758487.dkr.ecr.us-east-1.amazonaws.com/shippingservice
         ports:
         - containerPort: 50051
         env:
