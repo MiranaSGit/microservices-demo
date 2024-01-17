@@ -28,8 +28,6 @@ spec:
         app: cartservice
     spec:
       serviceAccountName: default
-      imagePullSecrets:
-      - name: regcred
       terminationGracePeriodSeconds: 5
       securityContext:
         fsGroup: 1000
@@ -45,7 +43,7 @@ spec:
               - ALL
           privileged: false
           readOnlyRootFilesystem: true
-        image: 178628758487.dkr.ecr.us-east-1.amazonaws.com/cartservice
+        image: cartservice
         ports:
         - containerPort: 7070
         env:

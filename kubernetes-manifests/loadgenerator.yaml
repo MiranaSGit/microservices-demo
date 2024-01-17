@@ -30,8 +30,6 @@ spec:
         sidecar.istio.io/rewriteAppHTTPProbers: "true"
     spec:
       serviceAccountName: default
-      imagePullSecrets:
-      - name: regcred
       terminationGracePeriodSeconds: 5
       restartPolicy: Always
       securityContext:
@@ -71,7 +69,7 @@ spec:
               - ALL
           privileged: false
           readOnlyRootFilesystem: true
-        image: 178628758487.dkr.ecr.us-east-1.amazonaws.com/loadgenerator
+        image: loadgenerator
         env:
         - name: FRONTEND_ADDR
           value: "frontend:80"

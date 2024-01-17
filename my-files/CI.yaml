@@ -1,0 +1,154 @@
+name: CI Workflow
+on: workflow_dispatch
+env:
+  AWS_REGION: us-east-1
+  REGION: us-east-1
+jobs:
+  BuildAndPublish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Code checkout
+        uses: actions/checkout@v4
+
+      - name: AdService Build and upload image to ECR
+        uses: appleboy/docker-ecr-action@master
+        with:
+          access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          registry: ${{ secrets.REGISTRY }}
+          repo: adservice
+          region: ${{ env.REGION }}
+          tags: latest, ${{ github.run_number}}
+          daemon_off: false
+          dockerfile: ${{ github.workspace }}/src/adservice/Dockerfile
+          context: ${{ github.workspace }}/src/adservice
+
+      - name: CartService Build and upload image to ECR
+        uses: appleboy/docker-ecr-action@master
+        with:
+          access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          registry: ${{ secrets.REGISTRY }}
+          repo: cartservice
+          region: ${{ env.REGION }}
+          tags: latest, ${{ github.run_number}}
+          daemon_off: false
+          dockerfile: ${{ github.workspace }}/src/cartservice/src/Dockerfile
+          context: ${{ github.workspace }}/src/cartservice/src
+
+      - name: CheckoutService Build and upload image to ECR
+        uses: appleboy/docker-ecr-action@master
+        with:
+          access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          registry: ${{ secrets.REGISTRY }}
+          repo: checkoutservice
+          region: ${{ env.REGION }}
+          tags: latest, ${{ github.run_number}}
+          daemon_off: false
+          dockerfile: ${{ github.workspace }}/src/checkoutservice/Dockerfile
+          context: ${{ github.workspace }}/src/checkoutservice
+
+      - name: CurrencyService Build and upload image to ECR
+        uses: appleboy/docker-ecr-action@master
+        with:
+          access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          registry: ${{ secrets.REGISTRY }}
+          repo: currencyservice
+          region: ${{ env.REGION }}
+          tags: latest, ${{ github.run_number}}
+          daemon_off: false
+          dockerfile: ${{ github.workspace }}/src/currencyservice/Dockerfile
+          context: ${{ github.workspace }}/src/currencyservice
+
+      - name: Emailservice Build and upload image to ECR
+        uses: appleboy/docker-ecr-action@master
+        with:
+          access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          registry: ${{ secrets.REGISTRY }}
+          repo: emailservice
+          region: ${{ env.REGION }}
+          tags: latest, ${{ github.run_number}}
+          daemon_off: false
+          dockerfile: ${{ github.workspace }}/src/emailservice/Dockerfile
+          context: ${{ github.workspace }}/src/emailservice
+
+      - name: Frontend Build and upload image to ECR
+        uses: appleboy/docker-ecr-action@master
+        with:
+          access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          registry: ${{ secrets.REGISTRY }}
+          repo: frontend
+          region: ${{ env.REGION }}
+          tags: latest, ${{ github.run_number}}
+          daemon_off: false
+          dockerfile: ${{ github.workspace }}/src/frontend/Dockerfile
+          context: ${{ github.workspace }}/src/frontend
+
+      - name: Loadgenerator Build and upload image to ECR
+        uses: appleboy/docker-ecr-action@master
+        with:
+          access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          registry: ${{ secrets.REGISTRY }}
+          repo: loadgenerator
+          region: ${{ env.REGION }}
+          tags: latest, ${{ github.run_number}}
+          daemon_off: false
+          dockerfile: ${{ github.workspace }}/src/loadgenerator/Dockerfile
+          context: ${{ github.workspace }}/src/loadgenerator
+
+      - name: PaymentService Build and upload image to ECR
+        uses: appleboy/docker-ecr-action@master
+        with:
+          access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          registry: ${{ secrets.REGISTRY }}
+          repo: paymentservice
+          region: ${{ env.REGION }}
+          tags: latest, ${{ github.run_number}}
+          daemon_off: false
+          dockerfile: ${{ github.workspace }}/src/paymentservice/Dockerfile
+          context: ${{ github.workspace }}/src/paymentservice
+
+      - name: ProductCatalogService Build and upload image to ECR
+        uses: appleboy/docker-ecr-action@master
+        with:
+          access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          registry: ${{ secrets.REGISTRY }}
+          repo: productcatalogservice
+          region: ${{ env.REGION }}
+          tags: latest, ${{ github.run_number}}
+          daemon_off: false
+          dockerfile: ${{ github.workspace }}/src/productcatalogservice/Dockerfile
+          context: ${{ github.workspace }}/src/productcatalogservice
+
+      - name: RecommendationService Build and upload image to ECR
+        uses: appleboy/docker-ecr-action@master
+        with:
+          access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          registry: ${{ secrets.REGISTRY }}
+          repo: recommendationservice
+          region: ${{ env.REGION }}
+          tags: latest, ${{ github.run_number}}
+          daemon_off: false
+          dockerfile: ${{ github.workspace }}/src/recommendationservice/Dockerfile
+          context: ${{ github.workspace }}/src/recommendationservice
+
+      - name: ShippingService Build and upload image to ECR
+        uses: appleboy/docker-ecr-action@master
+        with:
+          access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          registry: ${{ secrets.REGISTRY }}
+          repo: shippingservice
+          region: ${{ env.REGION }}
+          tags: latest, ${{ github.run_number}}
+          daemon_off: false
+          dockerfile: ${{ github.workspace }}/src/shippingservice/Dockerfile
+          context: ${{ github.workspace }}/src/shippingservice
