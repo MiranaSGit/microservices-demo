@@ -49,6 +49,8 @@ spec:
       {{- else }}
       serviceAccountName: default
       {{- end }}
+      imagePullSecrets:
+      - name: regcred
       terminationGracePeriodSeconds: 5
       restartPolicy: Always
       securityContext:

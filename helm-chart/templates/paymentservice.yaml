@@ -32,6 +32,8 @@ spec:
       {{- else }}
       serviceAccountName: default
       {{- end }}
+      imagePullSecrets:
+      - name: regcred
       terminationGracePeriodSeconds: 5
       securityContext:
         fsGroup: 1000

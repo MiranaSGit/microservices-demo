@@ -34,6 +34,8 @@ spec:
       {{- else }}
       serviceAccountName: default
       {{- end }}
+      imagePullSecrets:
+      - name: regcred
       securityContext:
         fsGroup: 1000
         runAsGroup: 1000
