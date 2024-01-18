@@ -1,0 +1,30 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: OnlineBoutique
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: default
+    server: https://kubernetes.default.svc
+  project: test
+  syncPolicy:
+    automated:
+      prune: true
+      allowEmpty: true
+      selfHeal: true
+  source:
+    chart:
+    repoURL: https://github.com/MiranaSGit/microservices-demo
+    path: helm-chart
+    targetRevision: main
+    helm:
+      # parameters: []
+      # Values file as block file
+      # https://github.com/argoproj/argo-cd/blob/master/docs/operator-manual/application.yaml
+      values: |
+        images:
+          repository: mirana
+          tag: latest
