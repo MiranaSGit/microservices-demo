@@ -9,7 +9,7 @@ spec:
   destination:
     namespace: test
     server: https://kubernetes.default.svc
-  project: test
+  project: app-of-apps
   syncPolicy:
     automated:
       prune: true
