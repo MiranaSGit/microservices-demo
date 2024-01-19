@@ -200,5 +200,5 @@ autoscaling:
   enabled: true
   minReplicas: 1
   maxReplicas: 3
-  targetMemoryUtilizationPercentage: 80
-  targetCPUUtilizationPercentage: 60
+  targetMemoryUtilizationPercentage: 50
+  targetCPUUtilizationPercentage: 50
