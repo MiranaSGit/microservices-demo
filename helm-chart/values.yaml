@@ -199,6 +199,6 @@ cartDatabase:
 autoscaling:
   enabled: true
   minReplicas: 1
-  maxReplicas: 3
+  maxReplicas: 10
   targetMemoryUtilizationPercentage: 50
   targetCPUUtilizationPercentage: 50
